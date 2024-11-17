@@ -1,0 +1,41 @@
+//https://script.google.com/macros/s/AKfycbwDdKcORKrRIa11NfU-9wdLySyz5h3GHsRRQ758zyUB6ui6PPQYyOgtLNCc2IexolBg/exec
+function doGet(e) {
+  Logger.log(JSON.stringify(e));
+  var result = 'Done';
+  if (e.parameter == 'undefined') {
+    result = 'No Parameters';
+  }
+  else {
+    var sheet_id = '1OdgGJ7qxR7GxepeQExrTgE_a0E2Yb79NijsuPQ4GA-U'; 	// Spreadsheet ID
+    var sheet = SpreadsheetApp.openById(sheet_id).getSheetByName('Sheet1');
+    var newRow = sheet.getLastRow() + 1;
+    var rowData = [];
+    var Curr_Date = new Date();
+    rowData[0] = Curr_Date; // Date in column A
+    var Curr_Time = Utilities.formatDate(Curr_Date, "GMT+7", 'HH:mm:ss');
+    rowData[1] = Curr_Time; // Time in column B
+    for (var param in e.parameter) {
+      Logger.log('In for loop, param=' + param);
+      var value = stripQuotes(e.parameter[param]);
+      Logger.log(param + ':' + e.parameter[param]);
+      if (param == 'id') {
+        rowData[2] = value; // data in column C
+      }
+    }
+    var Curr_Hour = Curr_Date.getHours * 60 + Curr_Date.getMinutes;
+    var checkAttendance;
+    if ((Curr_Hour <= 450 && Curr_Hour >= 435) || (Curr_Hour >= 855 && Curr_Hour <= 870)) {
+      rowData[3] = 'Đúng Giờ';
+    } else {
+      rowData[3] = 'Trễ Giờ'
+    }
+    Logger.log(JSON.stringify(rowData));
+    var newRange = sheet.getRange(newRow, 1, 1, rowData.length);
+    newRange.setValues([rowData]);
+    return ContentService.createTextOutput(result);
+  }
+}
+
+function stripQuotes(value) {
+  return value.replace(/^["']|['"]$/g, "");
+}

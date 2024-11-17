@@ -1,0 +1,248 @@
+\documentclass[conference, onecolumn]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{flushend}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+\title{IOT102 Attendance Check\\
+}
+
+\author{
+1\textsuperscript{st} Tran Nguyen Viet Quang , 2\textsuperscript{nd} Do Duy Long, 3\textsuperscript{rd} Le Huy Vu, 4\textsuperscript{th} Huynh Gia Bao, and Duc Ngoc Minh Dang\\
+FPT University, Ho Chi Minh Campus, Vietnam\\
+\{quangtnvse183008, longddse183065, vulhse182602, baohgse182507\}@fpt.edu.vn, and ducdnm2@fe.edu.vn}
+\maketitle
+
+\begin{abstract}
+This project pertains to the design of a Biometric Fingerprint Machine utilizing the AS608 Optical Fingerprint Sensor Module and the ESP8266 Module. The AS608 Optical Fingerprint Sensor Module is a compact and versatile biometric device that employs optical technology to capture and recognize fingerprints. The ESP8266 Module allows the microcontroller to connect to 2.4 GHz Wi-Fi, utilizing IEEE 802.11 bgn.\\
+The Biometric Fingerprint Machine displays user input options from a 16 x 2 LCD screen. The AS608 Optical Fingerprint Sensor Module is powered by a 5V Arduino and ensures accurate real-time fingerprint recognition. The ESP8266 Module communicates with the Arduino via TX and RX pins, to input information that will be used by multiple devices with virtual or physical keyboards, and all selection operations are displayed on the LCD screen.\\
+This project is suitable for individuals interested in electronics and programming and can be easily replicated with basic knowledge of circuit design and programming. The Biometric Fingerprint Machine with the AS608 and ESP8266 Matrix Keyboard is a useful and practical device for everyday use, helping to accurately identify user identity and login time on a user-friendly device.
+\end{abstract}
+
+\section{Introduction}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=3.5 in]{OIP.jpg}}
+\caption{Biometric Fingerprint Machine.}
+\label{fig}
+\end{figure}
+\begin{quote}
+    \noindent\hspace{10pt}Research has been conducted both domestically and internationally on Biometric Fingerprint Machines, uncovering several challenges within the field. Some of these research problems are: 
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}- Enhanced security: By utilizing biometric technology to accurately identify fingerprints, the "Biometric Fingerprint Machine" ensures a robust level of security. It's challenging to forge or steal fingerprints, making this system highly reliable for identity verification.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}- Fast and efficient user identification: With its ability to swiftly process information, this machine facilitates rapid and efficient user identification. This feature is particularly advantageous in time-sensitive environments like workplace entrances or security checkpoints.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}- Prevention of unauthorized access: Unlike traditional methods such as keys or cards, fingerprints cannot be transferred to unauthorized individuals, thereby ensuring that only authorized personnel can access secured areas.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}- Cost-effectiveness over time: Over the long term, biometric fingerprint machines prove to be cost-effective. There's no need for replacements due to lost keys or cards, and the reduced risk of security breaches mitigates potential financial losses.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}- Integration with other security systems: Many biometric fingerprint machines seamlessly integrate with existing security systems, providing comprehensive security solutions tailored to specific organizational needs.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}- Ease of use: These machines are designed with user-friendliness in mind. Users simply need to place their finger on the scanner, making it a convenient option for a wide range of individuals.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}- In the context of attendance systems, the biometric fingerprint machine effectively tackles issues like "buddy punching," thereby reducing fraudulent activities.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}In general, investigations into Biometric Fingerprint Machines have highlighted numerous hurdles, with current research dedicated to devising remedies that can enhance the performance, precision, longevity, and user interface of such devices. 
+\end{quote}
+
+\vspace{20pt}
+
+\section{Main proposal}
+
+\subsection{System models and block diagram}
+\begin{quote}
+    \noindent\hspace{10pt}The Biometric Fingerprint Machine integrates the AS608 Optical Fingerprint Sensor Module and the ESP8266 Module. The AS608 module serves as the primary biometric component, utilizing optical technology for fingerprint capture and recognition. Interfacing with the Arduino Uno, acting as the central processing unit, the AS608 module enables communication with the ESP8266 Module for Wi-Fi connectivity.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}Additionally, a 16 x 2 LCD screen displays user input options and selection operations, enhancing user interaction. Power is supplied to the system components through a suitable power source, which may include batteries, wall adapters, or a combination of both, ensuring continuous operation of the Biometric Fingerprint Machine.
+\end{quote}
+
+\centerline{\includegraphics[width=3 in]{Block Diagram Project Attendance Check.png}}
+\centerline{{figure 2. Block Diagram Of Project.}}
+
+\subsection{Components and peripheral devices}
+
+\begin{table}[htbp]
+\caption{SYSTEM’S   COMPONENTS   AND   PERIPHERAL   DEVICES}
+\begin{center}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{No}&\textbf{Components/Devices} & \textbf{ID/remarks}\\
+\hline
+1 & Microcontroller & Arduino Uno (ATmega328P based)\\
+\hline
+2 & Microcontroller & NodeMCU (ESP8266-12E)\\
+\hline
+4 & Display & LCD 16 × 2\\
+\hline
+5 & Breadboard & MB-102 (full size)\\
+\hline
+6 & Input & 4x4 matrix keypad (4 rows, 4 columns)\\
+\hline
+7 & Fingerprint sensor & AS608, 3.6v-6v, 1500 fingerprint capacity\\
+\hline
+\end{tabular}
+\label{tab1}
+\end{center}
+\end{table}
+
+\begin{quote}
+    \noindent\hspace{10pt}Below is additional information regarding the components within the Biometric Fingerprint system model and block diagram:
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}1.The ESP8266: a versatile component commonly used in biometric fingerprint machines. ESP8266 can connect to fingerprint sensors to collect information. Then, through a Wi-Fi network, it can transmit this data to Google Sheets using the Google Sheets API. Besides data transmission, ESP8266 also has the capability to check and receive results from Google Sheets through HTTP requests.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}2.Microcontroller: The microcontroller is the "brain" of the biometric fingerprint recognition system and is responsible for processing signals from the fingerprint sensor and other sensors, controlling the display, and managing user input. The microcontroller can be programmed to perform a variety of functions, such as matching fingerprint patterns, managing access control, and logging attendance records.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}3.Display: The display is used to display whether the fingerprint has been received or not. A common type of display used in digital clocks is the LCD (Liquid Crystal Display), which is energy-efficient and can display high-quality text and graphics.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}4.Other Sensors: Biometric fingerprint recognition systems may include other sensors such as temperature sensors, light sensors, and motion sensors to provide additional information or trigger specific functions. For example, a temperature sensor can be used to display the current temperature alongside fingerprint identification information.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}5.Power Supply: A power supply is necessary to provide power to the various components of the biometric fingerprint scanner. This can be a battery, a wall adapter, or a combination of both. Some biometric fingerprint scanners can also be powered by renewable energy sources, such as solar panels.
+\end{quote}
+\begin{quote}
+    \noindent\hspace{10pt}In general, the system architecture and schematic representation of a biometric fingerprint scanner can be tailored to meet the specific design requirements. The components mentioned above offer a broad perspective of the elements that are commonly incorporated in the system architecture and schematic representation of a biometric fingerprint scanner.
+\end{quote}
+
+\subsection{Software programming}
+
+\centerline{\includegraphics[width=3 in]{Flow Chart Project Attendance Check (1).png}}
+\centerline{{figure 3. Flow Chart Of Program.}}
+
+\subsection{Programming Flowchart}
+
+\centerline{\includegraphics[width=3 in]{Tinkercard.jpg}}
+\centerline{{figure 4. Circuit schematic/hardware interfacing.}}
+
+\vspace{20pt}
+
+\begin{table}[htbp]
+\caption{INTERFACING  BETWEEN  ARDUINO  UNO  AND  ITS  COMPONENTS  (PIN-TO-PIN)}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{Arudino Uno}&\textbf{ESP8266} & \textbf{Keypad 4 x 4}& \textbf{Fingerprint Sensor}&\textbf{LCD 16 x 2 Display}&\textbf{Potentiometer}\\
+\hline
+GND & GND &  & GND & GND, RW, K & GND\\
+\hline
+VCC (5V) &  &  &  & VCC, A & VCC\\
+\hline
+3,3V &  &  & 3,3V &  &\\
+\hline
+A0 &  & Col1 &  &  &\\
+\hline
+A1 &  & Col2 &  &  &\\
+\hline
+A2 &  & Col3 &  &  &\\
+\hline
+A3 &  & Col4 &  &  &\\
+\hline
+RX &  TX&  &  &  &\\
+\hline
+TX & RX &  &  &  &\\
+\hline
+D2 &  &  & TX &  &\\
+\hline
+D3 &  &  & RX &  &\\
+\hline
+D4 &  &  &  & DB7 &\\
+\hline
+D5 &  &  &  & DB6 &\\
+\hline
+D6 &  &  &  & DB5 &\\
+\hline
+D7 &  &  &  & DB4 &\\
+\hline
+D8 &  & Row 4 &  &  &\\
+\hline
+D9 &  & Row 3 &  &  &\\
+\hline
+D10 &  & Row 2 &  &  &\\
+\hline
+D11 &  &  &  & E &\\
+\hline
+D12 &  &  &  & RX &\\
+\hline
+D13 & Row 1 &  &  &  &\\
+\hline
+ &  &  &  & V0 & Signal\\
+\hline
+\end{tabular}
+\label{tab1}
+\end{center}
+\end{table}
+
+\begin{quote}
+    \noindent\hspace{10pt}1) ESP8266: is a Wi-Fi module that is widely used in electronic devices, such as digital clocks, timers, and data loggers, to provide wireless connectivity. The ESP8266 module is manufactured by Espressif Systems and is designed to operate with low power consumption, making it suitable for battery-powered devices. The ESP8266 module includes a non-volatile memory that can be used to store data and settings, such as network credentials and user-defined parameters.
+\end{quote}
+
+\begin{quote}
+    \noindent\hspace{10pt} The module also includes a built-in microcontroller that allows the ESP8266 to process data and execute commands, enabling it to operate independently of a host microcontroller. The ESP8266 module communicates with the host microcontroller using a variety of protocols, including UART, SPI, and I2C, which allows for flexible and reliable data transfer between the two devices. The module can be easily integrated into electronic devices using common development platforms, such as Arduino and Raspberry Pi. Libraries and example code are available for these platforms to simplify the integration process.
+\end{quote}
+
+\begin{quote}
+    \noindent\hspace{10pt}2) AS608: is a precision fingerprint sensor that is widely used in electronic devices to capture and process fingerprints with high accuracy and reliability. The AS608 is manufactured by AS Micro and is designed to operate over a wide range of conditions, making it suitable for use in a variety of applications. 
+\end{quote}
+
+\begin{quote}
+    \noindent\hspace{10pt}The AS608 fingerprint sensor captures the unique patterns of a fingerprint and converts this information into digital data. Specifically, the sensor scans the surface of the finger and generates a unique identifier based on the ridges and valleys present in the fingerprint. For example, if the fingerprint being scanned changes, the output data of the AS608 will change accordingly. The AS608 fingerprint sensor has a consistent response to fingerprints, which means that the output data is reliable and repeatable for a given fingerprint. This consistent response allows for easy and accurate identification of individuals and simplifies the design of electronic systems that use the sensor.
+\end{quote}
+
+\begin{quote}
+    \noindent\hspace{10pt}Overall, the AS608 is a popular and reliable fingerprint sensor that is widely used in electronic devices, such as biometric security systems, smart locks, and access control systems. The high accuracy, consistent response, and ease of integration make the AS608 an attractive choice for biometric identification applications.
+\end{quote}
+\section{Results and discussion}
+
+\subsection{Prototype Implementation}
+Source Of Project: https://drive.google.com/drive/folders/1cd4MgMvvc5wa1xzbowOb4Uw_l6I0vOun
+\subsection{Experimental Results}
+\centerline{\includegraphics[width=3 in]{result.jpg}}
+\centerline{{figure 5. Actual Product.}}
+\subsection{Discussion}
+
+\begin{quote}
+    \noindent\hspace{10pt}One of the primary advantages of biometric fingerprint systems is their ability to offer precise and accurate identification, particularly crucial in scientific, industrial, and commercial settings. These systems can function in diverse modes, including one-to-one or one-to-many matching, and can incorporate extra features like liveness detection, anti-spoofing, and tamper detection.
+\end{quote}
+
+\begin{quote}
+    \noindent\hspace{10pt}Biometric fingerprint systems can be crafted using various technologies such as optical, capacitive, and ultrasonic sensors. Optical sensors are resilient and yield high-resolution images, while capacitive sensors are compact and adept at capturing high-quality fingerprint patterns. Ultrasonic sensors provide deep penetration and excel in capturing fingerprints with exceptional detail.
+\end{quote}
+
+\begin{quote}
+    \noindent\hspace{10pt}In recent years, biometric fingerprint systems have merged with smart technologies, enabling them to establish internet connectivity and automatically synchronize data. This integration empowers these systems to authenticate identities across different databases and offer additional functionalities like transaction authentication, access control, and user activity monitoring.
+\end{quote}
+
+\section{Conclusion}
+
+\begin{quote}
+    \noindent\hspace{10pt}In conclusion, biometric fingerprint systems are crucial authentication devices widely used in households, offices, and public places. With advancements in technology, biometric fingerprint systems have evolved from simple authentication devices to multifunctional systems capable of performing various functions such as access control, transaction authentication, and employee management. Accuracy, power consumption, user interface, durability, functionality, and cost-effectiveness are important factors to consider for biometric fingerprint systems. Continuous research and development in this field focus on improving the design, functionality, and usability of biometric fingerprint systems. The system model and block diagram of a biometric fingerprint system typically include a fingerprint sensor module, a microcontroller, a display, other sensors, and a power supply. These components can be customized based on the specific requirements of the biometric fingerprint system design.[1]–[4] [5].
+\end{quote}
+
+\bibliographystyle{IEEEtran}  %use this for IT
+\bibliography{Bib_references}
+[1]Arduino - DS1307 RTC module: Arduino Tutorial, Arduino Getting Started. (2024). https://arduinogetstarted.com/tutorials/arduino-ds1307-rtc-module (accessed April 19, 2024). \\
+
+[2]Learn ESP32, ESP8266, Arduino, and Raspberry Pi, Random Nerd Tutorials. (2024). https://randomnerdtutorials.com/ (accessed April 19, 2024). \\
+
+[3]PhysicsBLOGforK12, S. Santos, Ori, Peter, Claudio, Claudio, et al., Fingerprint sensor module with Arduino, Random Nerd Tutorials. (2022). https://randomnerdtutorials.com/fingerprint-sensor-module-with-arduino/ (accessed April 20, 2024). 
+
+\end{document}  
